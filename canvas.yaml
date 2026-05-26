@@ -14,12 +14,12 @@ spec:
       configuration:
         body: "Preview environment setup failed. The instance has been cleaned up automatically.\n\nPlease try again with `/start`. If the problem persists, check the setup script at `scripts/preview-setup.sh`.\n"
         issueNumber: "{{ root().data.issue.number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 5240
         "y": 1100
@@ -34,12 +34,12 @@ spec:
       configuration:
         body: "Preview environment for this PR has been automatically destroyed after 24 hours. Use `/start` to spin up a new one."
         issueNumber: "{{ $['Read All Envs'].data.values[0].pr_number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 3960
         "y": 3020
@@ -69,7 +69,7 @@ spec:
         emitMode: "oneByOne"
         matchList:
           - name: "repo"
-            value: "storejs"
+            value: "example-app"
         namespace: "preview-envs"
         resultMode: "all"
       position:
@@ -83,13 +83,13 @@ spec:
       component: "github.createDeploymentStatus"
       configuration:
         deploymentId: "{{ string(int($['Create Deployment'].data.id)) }}"
-        repository: "storejs"
+        repository: "example-app"
         state: "in_progress"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 2680
         "y": 920
@@ -105,14 +105,14 @@ spec:
         autoMerge: false
         environment: "preview-pr-{{ root().data.issue.number }}"
         ref: "refs/pull/{{ root().data.issue.number }}/head"
-        repository: "storejs"
+        repository: "example-app"
         requiredContexts: []
         transientEnvironment: true
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 2040
         "y": 740
@@ -129,8 +129,8 @@ spec:
           authMethod: "ssh_key"
           privateKey:
             key: "private-key"
-            secret: "storejs-private-keys"
-        commands: "curl -fsSL https://raw.githubusercontent.com/puppies-inc/storejs/main/scripts/preview-setup.sh -o /tmp/setup.sh && chmod +x /tmp/setup.sh && sudo PR_NUMBER={{ root().data.issue.number }} bash /tmp/setup.sh"
+            secret: "preview-aws-ssh-key"
+        commands: "curl -fsSL https://raw.githubusercontent.com/example/example/main/scripts/preview-setup.sh -o /tmp/setup.sh && chmod +x /tmp/setup.sh && sudo PR_NUMBER={{ root().data.issue.number }} bash /tmp/setup.sh"
         connectionRetry:
           enabled: true
           intervalSeconds: 15
@@ -151,12 +151,12 @@ spec:
       configuration:
         body: "Preview environment deployed but the health check did not pass. The app may still be starting up.\n\n**URL:** http://{{ $['Create Instance'].data.publicIpAddress }}.sslip.io\n\nUse `/destroy` then `/start` to retry if it does not come up.\n"
         issueNumber: "{{ root().data.issue.number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 5880
         "y": 920
@@ -171,12 +171,12 @@ spec:
       configuration:
         body: "Your preview environment is ready!\n\n**URL:** http://{{ $['Create Instance'].data.publicIpAddress }}.sslip.io\n\nThis environment will be automatically destroyed after 24 hours. Use `/destroy` to tear it down manually.\n"
         issueNumber: "{{ root().data.issue.number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 6520
         "y": 920
@@ -205,12 +205,12 @@ spec:
       configuration:
         body: "A preview environment is already running for this PR. Use `/destroy` to tear it down first."
         issueNumber: "{{ root().data.issue.number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 2040
         "y": 1100
@@ -224,13 +224,13 @@ spec:
       component: "github.createDeploymentStatus"
       configuration:
         deploymentId: "{{ string(int($['Create Deployment'].data.id)) }}"
-        repository: "storejs"
+        repository: "example-app"
         state: "failure"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 4600
         "y": 1100
@@ -245,12 +245,12 @@ spec:
       configuration:
         body: "Preview environment destroyed. Use `/start` to spin up a new one."
         issueNumber: "{{ root().data.issue.number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 3960
         "y": 1920
@@ -264,13 +264,13 @@ spec:
       component: "github.createDeploymentStatus"
       configuration:
         deploymentId: "{{ $['Read Env (Close)'].data.values[0].deployment_id }}"
-        repository: "storejs"
+        repository: "example-app"
         state: "inactive"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 2680
         "y": 2560
@@ -285,13 +285,13 @@ spec:
       configuration:
         commentId: "{{ root().data.comment.id }}"
         content: "eyes"
-        repository: "storejs"
+        repository: "example-app"
         target: "issueComment"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 760
         "y": 920
@@ -336,13 +336,13 @@ spec:
       configuration:
         deploymentId: "{{ string(int($['Create Deployment'].data.id)) }}"
         environmentUrl: "http://{{ $['Create Instance'].data.PublicIpAddress }}.sslip.io"
-        repository: "storejs"
+        repository: "example-app"
         state: "success"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 5880
         "y": 560
@@ -372,12 +372,12 @@ spec:
       configuration:
         body: "PR closed — preview environment has been automatically destroyed."
         issueNumber: "{{ root().data.pull_request.number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 3320
         "y": 2560
@@ -391,13 +391,13 @@ spec:
       component: "github.createDeploymentStatus"
       configuration:
         deploymentId: "{{ $['Read All Envs'].data.values[0].deployment_id }}"
-        repository: "storejs"
+        repository: "example-app"
         state: "inactive"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 2680
         "y": 3020
@@ -441,7 +441,7 @@ spec:
           - name: "created_at"
             value: "{{ string(int(now().Unix())) }}"
           - name: "repo"
-            value: "storejs"
+            value: "example-app"
           - name: "deployment_id"
             value: "{{ string(int($['Create Deployment'].data.id)) }}"
           - name: "requested_by"
@@ -481,12 +481,12 @@ spec:
       configuration:
         actions:
           - "opened"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 120
         "y": 100
@@ -526,13 +526,13 @@ spec:
       configuration:
         commentId: "{{ root().data.comment.id }}"
         content: "eyes"
-        repository: "storejs"
+        repository: "example-app"
         target: "issueComment"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 760
         "y": 1920
@@ -546,12 +546,12 @@ spec:
       component: "github.onPRComment"
       configuration:
         contentFilter: "^/destroy"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 120
         "y": 1920
@@ -598,13 +598,13 @@ spec:
       component: "github.createDeploymentStatus"
       configuration:
         deploymentId: "{{ $['Read Env'].data.values[0].deployment_id }}"
-        repository: "storejs"
+        repository: "example-app"
         state: "inactive"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 3320
         "y": 1920
@@ -618,12 +618,12 @@ spec:
       component: "github.onPRComment"
       configuration:
         contentFilter: "^/start"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 120
         "y": 920
@@ -653,12 +653,12 @@ spec:
       configuration:
         body: "Welcome! Comment `/start` on this PR to spin up a preview environment. Use `/destroy` to tear it down when you're done.\n"
         issueNumber: "{{ root().data.pull_request.number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 760
         "y": 100
@@ -678,7 +678,7 @@ spec:
         image: "ami-02fd066b86800f60c"
         imageOs: "ubuntu"
         instanceType: "t3.micro"
-        keyName: "storejs-preview-env"
+        keyName: "preview-aws-ssh-key"
         name: "preview-pr-{{ root().data.issue.number }}"
         region: "us-east-1"
         securityGroupMode: "create"
@@ -708,12 +708,12 @@ spec:
       configuration:
         body: "No active preview environment found for this PR."
         issueNumber: "{{ root().data.issue.number }}"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 2040
         "y": 2100
@@ -728,12 +728,12 @@ spec:
       configuration:
         actions:
           - "closed"
-        repository: "storejs"
+        repository: "example-app"
       metadata:
         repository:
-          id: 1165844309
-          name: "storejs"
-          url: "https://github.com/puppies-inc/storejs"
+          id: 1234567890
+          name: "example-app"
+          url: "https://github.com/example/example"
       position:
         x: 120
         "y": 2560
