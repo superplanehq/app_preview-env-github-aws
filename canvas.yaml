@@ -4,7 +4,6 @@ metadata:
   id: "fc774886-da6c-4dae-b171-6aa5f7631fe2"
   name: "Preview Environments AWS"
   description: ""
-  isTemplate: false
 spec:
   nodes:
     - id: "setup-failed-comment"
