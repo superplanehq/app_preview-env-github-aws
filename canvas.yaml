@@ -724,6 +724,26 @@ spec:
       isCollapsed: false
       integration:
         id: "29467c4b-763b-4ba0-acf6-dec213ae6277"
+    - component: annotation
+      configuration:
+        color: purple
+        height: 328
+        text: "## Setting up your app\n\nThis SSH node runs \`scripts/preview-setup.sh\`\
+          \ from the **Files** tab to install and start your application on the instance.\n\
+          \n### What's configured at install\n\n- **SSH secret** — the private key for\
+          \ connecting to instances\n- **EC2 key pair** — the AWS key pair injected into\
+          \ new instances (must match the secret)\n\n### You will need to update this\n\
+          \nThis app handles the full lifecycle of preview environments — provisioning,\
+          \ health checks, teardown, and cleanup. But the actual setup step depends on\
+          \ your application. Edit \`scripts/preview-setup.sh\` in the **Files** tab to\
+          \ install your dependencies, build your app, and start your services."
+        width: 600
+      id: annotation-setup-note
+      name: Note
+      position:
+        x: 3840
+        'y': 456
+      type: TYPE_WIDGET
   edges:
     - sourceId: "ack-deploy"
       targetId: "check-exists"
