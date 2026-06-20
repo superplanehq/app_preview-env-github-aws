@@ -1,51 +1,39 @@
-# Preview Environments — GitHub + AWS
+# Preview Environments on AWS
 
-[![Launch in SuperPlane](http://superplane.com/badges/launch-in-superplane.svg)](http://app.superplane.com/install?repo=github.com/superplanehq/app_preview-env-aws)
+[![Launch in SuperPlane](https://superplane.com/badges/launch-in-superplane.svg)](https://app.superplane.com/install?repo=github.com/superplanehq/app_preview-env-github-aws)
 
-Spin up a live preview environment for every pull request. Comment `/start` on a PR, get a running app in ~2 minutes. Close the PR, environment auto-destroys.
-
-Built with [SuperPlane](https://superplane.com).
+A SuperPlane app that spins up preview environments on AWS EC2 for GitHub pull requests. Comment `/start` on a PR, get a running app on a fresh instance in ~2 minutes. Close the PR, environment auto-destroys.
 
 ## How it works
 
-1. Open a PR — bot posts a welcome comment with instructions
-2. Comment `/start` — SuperPlane creates a AWS EC2, deploys your app via SSH, and posts the preview URL
+1. Open a PR — the bot posts a welcome comment with instructions
+2. Comment `/start` — creates an EC2 instance, deploys your app via SSH, runs a health check, and posts the preview URL
 3. Comment `/destroy` — tears everything down
-4. Close/merge the PR — environment auto-destroys
-5. Forgot to clean up? A daily TTL check reaps environments older than 72 hours
+4. Close or merge the PR — environment auto-destroys
+5. A scheduled TTL check cleans up environments older than 24 hours
 
-GitHub Deployments are created along the way, so you get the native "View deployment" button and status badges on the PR.
+GitHub Deployments are created for each environment, so you get the native "View deployment" button and status badges on the PR.
 
 ## Prerequisites
 
-- [SuperPlane](https://superplane.com) account
-- **GitHub** integration connected (with Deployments permission)
-- **AWS** integration connected
-- An SSH key added to both AWS and SuperPlane (as a secret)
-- A setup script at `scripts/preview-setup.sh` in your repo
+- A [SuperPlane](https://superplane.com) account with GitHub and AWS integrations connected
+- An EC2 key pair registered in AWS
+- The corresponding private key stored as a SuperPlane secret (key name: `private-key`)
 
-## Quick start
+## Install
 
-1. Connect GitHub and AWS integrations in SuperPlane
-2. Create an SSH key secret in SuperPlane
-3. Add a `scripts/preview-setup.sh` to your repo (installs deps, starts your app)
-4. Import the canvas:
+Click **Launch in SuperPlane** at the top of this page. The wizard will walk you through connecting integrations, selecting your repository, picking an SSH secret, and entering your EC2 key pair name.
 
-```bash
-superplane canvases create --file canvas.yaml
-```
+## Customizing the setup script
 
-5. Update the integration IDs, repo name, SSH key reference, and setup script URL to match your setup
+The app includes `scripts/preview-setup.sh` in the **Files** tab. This script runs on each new instance to install dependencies and start your application.
 
-## Customization
+The default script sets up a Node.js app with nginx. Edit it to match your own stack — different runtime, build steps, service configuration.
 
-| Setting | Default |
-|---|---|
-| EC2 instance type | `t3.micro` |
-| Region | `nyc1` |
-| Image | `ubuntu-24-04-x64` |
-| TTL | 72 hours |
-| Command | `/start` and `/destroy` |
+The script receives these environment variables from the workflow:
+
+- `PR_NUMBER` — the pull request number
+- `REPO_URL` — the full clone URL of the repository
 
 ## License
 

@@ -1,0 +1,29 @@
+{
+  "install_params": [
+    {
+      "name": "repository",
+      "label": "GitHub Repository",
+      "type": "integration-resource",
+      "integration": "github",
+      "resourceType": "repository",
+      "useNameAsValue": true,
+      "description": "Repository to watch for pull requests",
+      "required": true
+    },
+    {
+      "name": "ssh_secret",
+      "label": "SSH Secret",
+      "type": "secret_picker",
+      "description": "Secret containing the SSH private key for accessing EC2 instances. The key name should be 'private-key'.",
+      "required": true
+    },
+    {
+      "name": "ec2_key_name",
+      "label": "EC2 Key Pair Name",
+      "type": "string",
+      "placeholder": "my-key-pair",
+      "description": "Name of the AWS EC2 key pair to inject into new instances. Must match the private key in your SSH secret.",
+      "required": true
+    }
+  ]
+}
